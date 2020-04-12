@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\sewakost;
 use Illuminate\Http\Request;
 
 class SewaController extends Controller
@@ -13,7 +14,9 @@ class SewaController extends Controller
      */
     public function index()
     {
-        return view('admin.sewa');
+        $title='sewakost';
+        $sewakost=sewakost::paginate(5);
+        return view('admin.sewa', compact('title','sewakost'));
     }
 
     /**
@@ -23,7 +26,8 @@ class SewaController extends Controller
      */
     public function create()
     {
-        //
+        $title='Input Kamar';
+        return view('admin.inputkamar', compact('title'));
     }
 
     /**
@@ -34,7 +38,19 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required'  => 'Kolom :attribute harus Lengkap',
+            'date'      => 'Kolom :attribute harus Tanggal',
+            'numeric'   => 'Kolom :attribute harus Angka',
+        ];
+        $validasi = $request->validate([
+            'id_kamar'=>'required',
+            'fasilitas'=>'required',
+            'status'=>'required',
+            'harga_sewa'=>'required'
+        ],$messages);
+        sewakost::create($validasi);
+        return redirect('sewa')->with('success','Data berhasil di update');
     }
 
     /**
@@ -56,7 +72,9 @@ class SewaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title='Input Kamar';
+        $sewakost=sewakost::find($id);
+        return view('admin.inputkamar', compact('title','sewakost'));
     }
 
     /**
@@ -68,7 +86,19 @@ class SewaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required'  => 'Kolom :attribute harus Lengkap',
+            'date'      => 'Kolom :attribute harus Tanggal',
+            'numeric'   => 'Kolom :attribute harus Angka',
+        ];
+        $validasi = $request->validate([
+            'id_kamar'=>'',
+            'fasilitas'=>'required',
+            'status'=>'required',
+            'harga_sewa'=>'required'
+        ],$messages);
+        sewakost::whereid_kamar($id)->update($validasi);
+        return redirect('sewa')->with('success','Data berhasil di update');
     }
 
     /**
@@ -79,6 +109,7 @@ class SewaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        sewakost::whereid_kamar($id)->delete();
+        return redirect('sewa')->with('success','Data berhasil di update');
     }
 }
