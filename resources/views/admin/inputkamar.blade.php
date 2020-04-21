@@ -10,9 +10,6 @@
             @if(isset($sewakost))@method('PUT')
             @endif
             <div class="panel-body">
-            <input type="text" value="{{(isset($sewakost))?$sewakost->id_kamar:old('id_kamar')}}" name="id_kamar" class="form-control" placeholder="ID Kamar">
-                @error('id_kamar')<small style="color:red">{{$message}}</small>@enderror
-                <br>
                 <input type="text" value="{{(isset($sewakost))?$sewakost->fasilitas:old('fasilitas')}}" name="fasilitas" class="form-control" placeholder="Fasilitas">
                 @error('fasilitas')<small style="color:red">{{$message}}</small>@enderror
                 <br>

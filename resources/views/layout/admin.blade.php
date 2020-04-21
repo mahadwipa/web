@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-	<title>{{(isset($title)?$title:'Beranda')}}</title>
+	<title> {{(isset($title)?$title: 'Beranda') }}</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendor/linearicons/style.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendor/chartist/css/chartist-custom.css')}}">
 	<!-- MAIN CSS -->
@@ -40,46 +40,27 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>
+				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
-							</a>
-							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('assets/img/user.png')}}" class="img-circle" alt="Avatar"> <span>Mahadwipa</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-							</ul>
-						</li>
-						<!-- <li>
-							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-						</li> -->
+						
+					<li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
 					</ul>
 				</div>
 			</div>
@@ -90,24 +71,12 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-						<li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="page-profile.html" class="">Profile</a></li>
-									<li><a href="page-login.html" class="">Login</a></li>
-									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-								</ul>
-							</div>
-						</li>
-						<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-						<li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-						<li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+						<li><a href="cover" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="sewa" class=""><i class="lnr lnr-code"></i> <span>Manajemen Kamar</span></a></li>
+						<li><a href="transaksi" class=""><i class="lnr lnr-chart-bars"></i> <span>Manajemen Transaksi</span></a></li>
+						<li><a href="user" class=""><i class="lnr lnr-cog"></i> <span>Manajemen User</span></a></li>
+						<li><a href="penyewa" class=""><i class="lnr lnr-alarm"></i> <span>Manajemen Penyewa</span></a></li>
+				
 					</ul>
 				</nav>
 			</div>
@@ -115,11 +84,9 @@
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
-            <!-- MAIN CONTENT -->
-            <div class="content">
-                @yield('content')
-            </div>
-			<!-- END MAIN CONTENT -->
+
+			@yield('content')
+			
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
@@ -140,7 +107,6 @@
 	<script>
 	$(function() {
 		var data, options;
-
 		// headline charts
 		data = {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -149,7 +115,6 @@
 				[14, 25, 18, 34, 29, 38, 44],
 			]
 		};
-
 		options = {
 			height: 300,
 			showArea: true,
@@ -161,10 +126,7 @@
 			},
 			lineSmooth: false,
 		};
-
 		new Chartist.Line('#headline-chart', data, options);
-
-
 		// visits trend charts
 		data = {
 			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -176,7 +138,6 @@
 				data: [240, 350, 360, 380, 400, 450, 480, 523, 555, 600, 700, 800],
 			}]
 		};
-
 		options = {
 			fullWidth: true,
 			lineSmooth: false,
@@ -192,7 +153,6 @@
 			},
 			axisX: {
 				showGrid: false,
-
 			},
 			axisY: {
 				showGrid: false,
@@ -204,10 +164,7 @@
 				right: 20
 			}
 		};
-
 		new Chartist.Line('#visits-trends-chart', data, options);
-
-
 		// visits chart
 		data = {
 			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -215,17 +172,13 @@
 				[6384, 6342, 5437, 2764, 3958, 5068, 7654]
 			]
 		};
-
 		options = {
 			height: 300,
 			axisX: {
 				showGrid: false
 			},
 		};
-
 		new Chartist.Bar('#visits-chart', data, options);
-
-
 		// real-time pie chart
 		var sysLoad = $('#system-load').easyPieChart({
 			size: 130,
@@ -238,23 +191,19 @@
 			lineCap: "square",
 			animate: 800
 		});
-
 		var updateInterval = 3000; // in milliseconds
-
 		setInterval(function() {
 			var randomVal;
 			randomVal = getRandomInt(0, 100);
-
 			sysLoad.data('easyPieChart').update(randomVal);
 			sysLoad.find('.percent').text(randomVal);
 		}, updateInterval);
-
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
-
 	});
 	</script>
 </body>
-@yield('script')
+@yield('sript')
+
 </html>

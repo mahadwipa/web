@@ -68,34 +68,8 @@
 						</ul>
 					</div>
 				</div>				
-			</div>
-			<div class="col-lg-12">
-				<a href="{{route('sewa.create')}}">Tambah Data</a>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>No</th><th>Fasilitas</th><th>Status</th><th>Harga Sewa</th><th>Opsi</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach ($sewakost as $in=>$val) 
-							<tr>
-								<td>{{$in+1}}</td><td>{{$val->fasilitas}}</td><td>{{$val->status}}</td><td>{{$val->harga_sewa}}</td>
-								<td>
-									<a href="{{route('sewa.edit',$val->id_kamar)}}">Update</a>
-									<form action="{{route('sewa.destroy',$val->id_kamar )}}" method="POST">
-										@csrf
-										@method('DELETE')
-										<button type="submit">Delete</button>
-									</form>
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
-				{{$sewakost->links()}}		
-			</div>
-		</div>							
+            </div>
+        </div>							
 	</div>
 </div>
 @endsection

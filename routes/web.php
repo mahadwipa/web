@@ -17,3 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('sewa','SewaController');
+Auth::routes();
+Route::get('/home', 'SewaController@index')->name('home');
+Route::resource('ppl', 'PplController');
+
+Auth::routes();
+
+Route::get('/ppl', 'PplController@index')->name('home');
+
+Route::resource('penyewa', 'PenyewaController');
+
+Auth::routes();
+
+Route::get('/penyewa', 'PenyewaController@index')->name('home');
+
+
